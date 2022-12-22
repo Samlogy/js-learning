@@ -57,3 +57,37 @@ const closure_example = (function () {
 closure_example();
 closure_example();
 closure_example();
+
+/* Counter as Object */
+function Counter() {
+  let count = 0;
+
+  this.up = function () {
+    return ++count;
+  };
+  this.down = function () {
+    return --count;
+  };
+  this.current = () => count;
+}
+
+let counting = new Counter();
+
+console.log(counting.up());
+console.log(counting.up());
+console.log(counting.down());
+console.log(counting.down());
+console.log(counting.current());
+
+/* Sum with CLOSURE */
+function sum(a) {
+  return function (b) {
+    // takes "a" from the outer lexical environment
+    return (c) => {
+      // takes "b" from the outer lexical environment
+      return a + b + c;
+    };
+  };
+}
+
+console.log("sum: ", sum(1)(2)(3)); // 3
