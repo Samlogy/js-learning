@@ -41,5 +41,27 @@ function sortBy(field, data, order = "asc") {
 // console.log("sort by -->  name: ", sortBy("name", users));
 // console.log("sort by -->  surname: ", sortBy("surname", users));
 // console.log("sort by -->  age: ", sortBy("age", users, "desc"));
-console.log("sort by -->  createdAt: ", sortBy("createdAt", users));
-console.log("sort by -->  editedAt: ", sortBy("editedAt", users, "desc"));
+// console.log("sort by -->  createdAt: ", sortBy("createdAt", users));
+// console.log("sort by -->  editedAt: ", sortBy("editedAt", users, "desc"));
+
+/* Filter */
+function filterFunction(arr) {
+  return function (x) {
+    return arr.includes(x); // include a specific condition
+  };
+}
+
+function Filter(filters, data) {
+  // check if filters exist
+  if (Array.isArray(filters) && filters.length > 0) {
+    // filter data with filters with they exist
+    for (let filter of filters) {
+      if (filter) {
+        data.filter(filterFunction(filter));
+      }
+    }
+  }
+  return data;
+}
+
+console.log("filter -->: ", Filter(["age"], users));
