@@ -45,15 +45,15 @@ console.log("add: ", add());
 /* CLOSURE */
 // closure are self-invoking function, can have it own private variables, can be only called through add()
 
-const addClosure = (function () {
+const closure_example = (function () {
   let counter = 0;
-  return () => {
+  return function () {
     counter += 1;
-    console.log("add CLOSURE: ", counter);
+    console.log("closure_example: ", counter);
     return counter;
   };
 })();
 
-addClosure();
-addClosure();
-addClosure();
+closure_example();
+closure_example();
+closure_example();
