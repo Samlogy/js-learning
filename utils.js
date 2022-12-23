@@ -116,30 +116,32 @@ function sortBy(field, data, order = "asc") {
   throw new Error("Field do not Exist !");
 }
 
-console.log("sort by -->  name: ", sortBy("name", users));
-console.log("sort by -->  surname: ", sortBy("username", users));
-console.log("sort by -->  age: ", sortBy("age", users, "desc"));
-console.log("sort by -->  createdAt: ", sortBy("createdAt", users));
-console.log("sort by -->  editedAt: ", sortBy("editedAt", users, "desc"));
+// console.log("sort by -->  name: ", sortBy("name", users));
+// console.log("sort by -->  surname: ", sortBy("username", users));
+// console.log("sort by -->  age: ", sortBy("age", users, "desc"));
+// console.log("sort by -->  createdAt: ", sortBy("createdAt", users));
+// console.log("sort by -->  editedAt: ", sortBy("editedAt", users, "desc"));
 
 /* Filter */
-// function filterFunction(arr) {
-//   return function (x) {
-//     return arr.includes(x); // include a specific condition
-//   };
-// }
 
-// function Filter(filters, data) {
-//   // check if filters exist
-//   if (Array.isArray(filters) && filters.length > 0) {
-//     // filter data with filters with they exist
-//     for (let filter of filters) {
-//       if (filter) {
-//         data.filter(filterFunction(filter));
-//       }
-//     }
-//   }
-//   return data;
-// }
+const FilterProto = (data, value, field = "username") => {
+  return data.filter((x) => x[field].toLowerCase().includes(value));
+};
 
-// console.log("filter -->: ", Filter(["username"], users));
+console.log("filter -->: ", FilterProto(users, "mo", "username"));
+
+Array.prototype.FilterProto = (callback) => {
+  const filteredArr = [];
+  for (let i = 0; i < this.length; i++) {
+    if (callback(this[i])) {
+      console.log(this);
+      filteredArr.push(this[i]);
+    }
+  }
+  return filteredArr;
+};
+
+console.log(
+  "filter -->: ",
+  users.FilterProto((x) => x["username"].toLowerCase().includes("Moriah"))
+);
