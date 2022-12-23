@@ -109,3 +109,22 @@ class ClockClass {
 
 let clock2 = new ClockClass({ template: "h:m:s" });
 // clock2.start();
+
+/* Inheritance */
+class ExtendedClock extends ClockClass {
+  constructor(options) {
+    super(options);
+    let { precision = 2000 } = options;
+    this.precision = precision;
+  }
+
+  start() {
+    this.render();
+    this.timer = setInterval(() => this.render(), this.precision);
+  }
+}
+
+const clock3 = new ExtendedClock({ template: "h:m:s", precision: 1000 });
+// clock3.start();
+
+/* Static */
