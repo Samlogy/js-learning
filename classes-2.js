@@ -15,18 +15,9 @@ class Article {
   static createArticle(id, title, date) {
     const newArticle = new this(id, title, date); // "this" refers to the Article class --> create an instance of "Article" class
     console.log("az: ", this.articles);
-    this.articles = [...articles, newArticle];
+    this.articles = [...this.articles, newArticle];
     return newArticle;
   }
-  // static removeArticle(id) {
-  //   return this.articles.filter((article) => article.id !== id);
-  // }
-  // static editArticle(id, editedArticle) {
-  //   return articles.map((article) => {
-  //     if (article.id === id) return { ...editedArticle };
-  //     return article;
-  //   });
-  // }
   static getArticles() {
     return this.articles;
   }
